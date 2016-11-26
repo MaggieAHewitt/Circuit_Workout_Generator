@@ -1,12 +1,15 @@
 from exercise import Exercise
 
+# Todo - Move to config file
+max_focus_per_circuit = 2
+
 
 class Circuit:
-    def __init__(self, all_exercises, exercises_per_circuit, focus, focus_goal):
+    def __init__(self, all_exercises, exercises_per_circuit, focus, focus_goal, no_weights, no_stability_ball, no_machines):
         self.focused_count = 0
+        self.focus_goal = focus_goal
         self.exercises = []
-
-        self.getNaiveExerciseList(all_exercises, exercises_per_circuit, focus, focus_goal)
+        self.getExerciseList(all_exercises, exercises_per_circuit, focus, no_weights, no_stability_ball, no_machines)
 
     def __str__(self):
         string = ''
@@ -15,19 +18,24 @@ class Circuit:
         return string
 
     # todo - account for weights and stability ball
-    def getNaiveExerciseList(self, all_exercises, exercises_per_circuit, focus, focus_goal):
+    def getExerciseList(self, all_exercises, exercises_per_circuit, focus, no_weights, no_stability_ball, no_machines):
+
         while(exercises_per_circuit > 0):
-            if (focus != '') and (focus_goal > 0):
+            if (focus != '') and (self.focus_goal > 0):
                 self.getNextFocusedExercise(all_exercises, focus)
-                focus_goal -= 1
+                self.focus_goal -= 1
 
             else:
                 self.getNextExercise(all_exercises)
 
             exercises_per_circuit -= 1
 
+    def getNextExercise(self, all_exercises):
+        exercise = all_exercises[0]
+        self.exercises.append(exercise)
+        all_exercises.pop(0)
+
     def getNextFocusedExercise(self, all_exercises, focus):
-        # Todo - get list of all exercises in focus in order of count
         for exercise in all_exercises:
             if(exercise.group == focus or exercise.secondary_group == focus):
                 self.exercises.append(exercise)
@@ -37,9 +45,3 @@ class Circuit:
 
         # If there aren't any more exercises of that focus, get a generic one
         self.getNextExercise(all_exercises)
-
-    def getNextExercise(self, all_exercises):
-        # Todo - get list of all exercises in focus in order of count
-        exercise = all_exercises[0]
-        self.exercises.append(exercise)
-        all_exercises.pop(0)
