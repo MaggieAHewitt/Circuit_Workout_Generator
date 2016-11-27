@@ -1,0 +1,42 @@
+body {
+  font-family: 'Assistant', sans-serif;
+}
+
+h1 {
+  text-align: center;
+  color: orange;
+}
+
+h2 {
+  text-align: center;
+  color: white;
+  background-color:teal;
+}
+
+h3 {
+  text-align: center;
+}
+
+h4 {
+  text-align: center;
+  color: purple;
+  font-weight:strong;
+}
+
+.section {
+  background-color:#ffffff;
+  border:1px solid orange;
+}
+
+.form-group {
+  margin-bottom:10px;
+}
+
+.checkbox {
+  margin-bottom:10px;
+}
+
+.exercise{
+  text-align:center;
+  margin-bottom:10px;
+}
