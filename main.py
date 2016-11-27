@@ -18,7 +18,8 @@ def main():
     no_stability_ball = True if (stability_ball != 'y') else False
     no_machines = True if (machines != 'y') else False
 
-    createWorkout(exercises, int(number_of_circuits), int(exercises_per_circuit), focus, no_weights, no_stability_ball, no_machines)
+    workout = Workout(exercises, int(number_of_circuits), int(exercises_per_circuit), focus, no_weights, no_stability_ball, no_machines)
+    print(workout)
 
 
 def loadExercises():
