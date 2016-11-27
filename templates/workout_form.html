@@ -12,7 +12,7 @@
       <form class="form-horizonal" action="/generate" method="POST">
         <div class="form-group">
           <label for="targetMuscleGroup">Target Muscle Group</label>
-          <select class="form-control" id="targetMuscleGroup">
+          <select class="form-control" id="targetMuscleGroup" name='focus'>
             <option value="ALL" selected="selected">Everything</option>
             <option value="CORE">Core</option>
             <option value="BACK">Back</option>
@@ -27,38 +27,38 @@
 
         <div class="form-group">
           <label for="numberOfCircuits">Number of Circuits</label>
-          <input type="number" class="form-control" id="numberOfCircuits" min="1" max="50" placeholder="3"></input>
+          <input type="number" class="form-control" id="numberOfCircuits" name="numberOfCircuits" min="1" max="50" value="3">
         </div>
 
         <div class="form-group">
           <label for="numberOfExercisesPerCercuit">Exercises per Circuit</label>
-          <input type="number" class="form-control" id="numberOfExercisesPerCercuit" min="1" max="50" placeholder="3"></input>
+          <input type="number" class="form-control" id="numberOfExercisesPerCercuit" name="numberOfExercisesPerCercuit" min="1" max="50" value="3">
        </div>
 
        <div class="checkbox">
          <label>
-           <input type="checkbox" name="weightsAvailable" id="weightsAvailable" value="" checked></input>
+           <input type="checkbox" name="weightsAvailable" id="weightsAvailable" value="weightsAvailable" checked>
            Include exercise that require free weights
          </label>
        </div>
 
        <div class="checkbox">
          <label>
-           <input type="checkbox" name="stabilityBallAvailable" id="stabilityBallAvailable" value="" checked></input>
+           <input type="checkbox" name="stabilityBallAvailable" id="stabilityBallAvailable" value="stabilityBallAvailable" checked>
            Include exercise that require a stability ball
          </label>
        </div>
 
        <div class="checkbox">
          <label>
-           <input type="checkbox" name="exerciseMachinesAvailable" id="exerciseMachinesAvailable" value="" checked></input>
+           <input type="checkbox" name="exerciseMachinesAvailable" id="exerciseMachinesAvailable" value="exerciseMachinesAvailable" checked>
            Include exercises that frequire exercise machines
          </label>
        </div>
 
        <hr>
 
-       <input type="submit" id="generateWorkoutButton" class="btn btn-primary right" value="Generate Workout"></input>
+       <input type="submit" id="generateWorkoutButton" class="btn btn-primary right" value="Generate Workout">
 
       </form>
     </div>

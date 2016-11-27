@@ -1,6 +1,8 @@
 import math
+import csv
 from random import shuffle
 from circuit import Circuit
+from exercise import Exercise
 
 
 class Workout:
@@ -62,3 +64,16 @@ class Workout:
         print("\n OOPS!")
         print("It seems there are no workouts that match the provided criteria.")
         print("Please try again\n")
+
+
+def loadExercises():
+    exercises = []
+    file = open('ExerciseList.csv')
+    csv_file = csv.reader(file)
+
+    for row in csv_file:
+        exercise = Exercise(row[0], row[1], row[2], row[3], row[4], (row[5] if (len(row) > 5) else False))
+        exercises.append(exercise)
+        print(exercise)
+
+    return exercises
