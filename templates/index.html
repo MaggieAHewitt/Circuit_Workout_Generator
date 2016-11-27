@@ -3,7 +3,7 @@
   <head>
     <title>Circuit Workout Generator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Assistant" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Assistant:200,300,400,600,700,800" rel="stylesheet">
     <link href="static/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="static/css/customStyles.css" rel="stylesheet" media="screen">
     <script src="static/javascipt/jquery-3.1.1.min.js"></script>
@@ -11,151 +11,166 @@
   </head>
 
   <!--/* Background pattern from subtlepatterns.com */-->
-  <body background="/static/images/small_tiles.png">
+  <body background="/static/images/gplaypattern.png">
+
+      <div class="header" >
+        <div class="header-img-container">
+          <div class="header-img">
+            <img src="/static/images/banner.png"/>
+          </div>
+        </div>
+      </div>
+
       <div class="container">
-        <div class="header">
-          <h1>Circuit Workout Planner</h1>
+
+        <div id="workoutGenerationForm" class="col-lg-8 col-lg-offset-2 section">
+
+          <div class="row section-header">
+              <h2>Generate Workout</h2>
+          </div>
+
+          <div class="row section-content">
+            <form class="form-horizonal">
+              <div class="form-group">
+                <label for="targetMuscleGroup">Target Muscle Group</label>
+                <select class="form-control" id="targetMuscleGroup">
+                  <option value="ALL" selected="selected">Everything</option>
+                  <option value="CORE">Core</option>
+                  <option value="BACK">Back</option>
+                  <option value="LEGS">Legs</option>
+                  <option value="CHEST">Chest</option>
+                  <option value="HAMSTRING">Hamstrings</option>
+                  <option value="QUADRICEPS">Quadriceps</option>
+                  <option value="BICEPS">Biceps</option>
+                  <option value="TRICEPS">Triceps</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="numberOfCircuits">Number of Circuits</label>
+                <input type="number" class="form-control" id="numberOfCircuits" min="1" max="50" placeholder="3">
+              </div>
+
+              <div class="form-group">
+                <label for="numberOfExercisesPerCercuit">Exercises per Circuit</label>
+                <input type="number" class="form-control" id="numberOfExercisesPerCercuit" min="1" max="50" placeholder="3">
+             </div>
+
+             <div class="checkbox">
+               <label>
+                 <input type="checkbox" name="weightsAvailable" id="weightsAvailable" value="" checked>
+                 Include exercise that require free weights
+               </label>
+             </div>
+
+             <div class="checkbox">
+               <label>
+                 <input type="checkbox" name="stabilityBallAvailable" id="stabilityBallAvailable" value="" checked>
+                 Include exercise that require a stability ball
+               </label>
+             </div>
+
+             <div class="checkbox">
+               <label>
+                 <input type="checkbox" name="exerciseMachinesAvailable" id="exerciseMachinesAvailable" value="" checked>
+                 Include exercises that frequire exercise machines
+               </label>
+             </div>
+
+             <hr>
+
+             <button type="button" id="generateWorkoutButton" class="btn btn-primary right">Generate Workout</button>
+
+            </form>
+          </div>
         </div>
 
-        <div id="workoutGenerationForm" class="col-lg-6 col-lg-offset-3 section">
-          <form class="form-horizonal">
+        <div id="workout" class="col-lg-8 col-lg-offset-2 section">
+          <div class="row section-header">
+            <h2>Workout</h2>
+          </div>
+          <div class="row section-content">
+            <div class="workout-list">
 
-            <h2>Generate Workout</h2>
+              <div class="circuit row">
+                <h3>Circuit 1</h3>
+                <div class="exercises">
+                  <div class="exercise col-lg-4">
+                    <h4>Pushups</h4>
+                    <p>Muscle Group: Chest</p>
+                  </div>
 
-            <div class="form-group">
-              <label for="targetMuscleGroup">Target Muscle Group</label>
-              <select class="form-control" id="targetMuscleGroup">
-                <option value="ALL" selected="selected">Everything</option>
-                <option value="CORE">Core</option>
-                <option value="BACK">Back</option>
-                <option value="LEGS">Legs</option>
-                <option value="CHEST">Chest</option>
-                <option value="HAMSTRING">Hamstrings</option>
-                <option value="QUADRICEPS">Quadriceps</option>
-                <option value="BICEPS">Biceps</option>
-                <option value="TRICEPS">Triceps</option>
-              </select>
-            </div>
+                  <div class="exercise col-lg-4">
+                    <h4>Deadlift Row</h4>
+                    <p>
+                      Muscle Group: Back <br/>
+                      Requires: Weights
+                    </p>
+                  </div>
 
-            <div class="form-group">
-              <label for="numberOfCircuits">Number of Circuits</label>
-              <input type="number" class="form-control" id="numberOfCircuits" min="1" max="50" placeholder="3">
-            </div>
-
-            <div class="form-group">
-              <label for="numberOfExercisesPerCercuit">Exercises per Circuit</label>
-              <input type="number" class="form-control" id="numberOfExercisesPerCercuit" min="1" max="50" placeholder="3">
-           </div>
-
-           <div class="checkbox">
-             <label>
-               <input type="checkbox" name="weightsAvailable" id="weightsAvailable" value="" checked>
-               Include exercise that require free weights
-             </label>
-           </div>
-
-           <div class="checkbox">
-             <label>
-               <input type="checkbox" name="stabilityBallAvailable" id="stabilityBallAvailable" value="" checked>
-               Include exercise that require a stability ball
-             </label>
-           </div>
-
-           <div class="checkbox">
-             <label>
-               <input type="checkbox" name="exerciseMachinesAvailable" id="exerciseMachinesAvailable" value="" checked>
-               Include exercises that frequire exercise machines
-             </label>
-           </div>
-
-           <hr>
-
-           <button type="button" class="btn btn-primary right">Generate Workout</button>
-
-          </form>
-        </div>
-        <div id="workout" class="col-lg-6 col-lg-offset-3 section">
-          <h2>Workout</h2>
-          <div class="workout-list">
-
-            <div class="circuit row">
-              <h3>Circuit 1</h3>
-              <div class="exercises">
-                <div class="exercise col-lg-4">
-                  <h4>Pushups</h4>
-                  <p>Muscle Group: Chest</p>
-                </div>
-
-                <div class="exercise col-lg-4">
-                  <h4>Deadlift Row</h4>
-                  <p>
-                    Muscle Group: Back <br/>
-                    Requires: Weights
-                  </p>
-                </div>
-
-                <div class="exercise col-lg-4">
-                  <h4>Stability Ball Pass</h4>
-                  <p>
-                    Muscle Group: Core <br/>
-                    Requires: Stability Ball
-                  </p>
+                  <div class="exercise col-lg-4">
+                    <h4>Stability Ball Pass</h4>
+                    <p>
+                      Muscle Group: Core <br/>
+                      Requires: Stability Ball
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <hr>
+              <hr>
 
-            <div class="circuit row">
-              <h3>Circuit 2</h3>
+              <div class="circuit row">
+                <h3>Circuit 2</h3>
 
-              <div class="exercises col-lg-10 col-lg-offset-2">
-                <div class="exercise">
-                  <h4>Pushups</h4>
-                  <p>Muscle Group: Chest</p>
-                </div>
+                <div class="exercises col-lg-10 col-lg-offset-2">
+                  <div class="exercise">
+                    <h4>Pushups</h4>
+                    <p>Muscle Group: Chest</p>
+                  </div>
 
-                <div class="exercise">
-                  <h4>Deadlift Row</h4>
-                  <p>Muscle Group: Back</p>
-                  <p>Requires: Weights</p>
-                </div>
+                  <div class="exercise">
+                    <h4>Deadlift Row</h4>
+                    <p>Muscle Group: Back</p>
+                    <p>Requires: Weights</p>
+                  </div>
 
-                <div class="exercise">
-                  <h4>Stability Ball Pass</h4>
-                  <p>Muscle Group: Core</p>
-                  <p>Requires: Stability Ball</p>
-                </div>
-              </div>
-            </div>
-
-            <hr>
-
-            <div class="circuit row">
-              <h3>Circuit 2</h3>
-
-              <div class="exercises col-lg-10 col-lg-offset-2">
-                <div class="exercise">
-                  <h4>Pushups</h4>
-                  <p>Muscle Group: Chest</p>
-                </div>
-
-                <div class="exercise">
-                  <h4>Deadlift Row</h4>
-                  <p>Muscle Group: Back</p>
-                  <p>Requires: Weights</p>
-                </div>
-
-                <div class="exercise">
-                  <h4>Stability Ball Pass</h4>
-                  <p>Muscle Group: Core</p>
-                  <p>Requires: Stability Ball</p>
+                  <div class="exercise">
+                    <h4>Stability Ball Pass</h4>
+                    <p>Muscle Group: Core</p>
+                    <p>Requires: Stability Ball</p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <hr>
-        </div>
+              <hr>
+
+              <div class="circuit row">
+                <h3>Circuit 2</h3>
+
+                <div class="exercises col-lg-10 col-lg-offset-2">
+                  <div class="exercise">
+                    <h4>Pushups</h4>
+                    <p>Muscle Group: Chest</p>
+                  </div>
+
+                  <div class="exercise">
+                    <h4>Deadlift Row</h4>
+                    <p>Muscle Group: Back</p>
+                    <p>Requires: Weights</p>
+                  </div>
+
+                  <div class="exercise">
+                    <h4>Stability Ball Pass</h4>
+                    <p>Muscle Group: Core</p>
+                    <p>Requires: Stability Ball</p>
+                  </div>
+                </div>
+              </div>
+
+              <hr>
+          </div>
+        </div><!-- section-content -->
       </div> <!-- Container -->
   </body>
 </html>
