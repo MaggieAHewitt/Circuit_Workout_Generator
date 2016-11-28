@@ -30,7 +30,7 @@ class Workout:
     def createWorkout(self):
         total_exercises_in_workout = self.num_of_circuits * self.num_of_exerecises
         if(total_exercises_in_workout > len(self.filtered_exercise_list)):
-            self.printNoWorkoutMessage()
+            # self.printNoWorkoutMessage()
             return
 
         self.getCircuits()
@@ -74,6 +74,5 @@ def loadExercises():
     for row in csv_file:
         exercise = Exercise(row[0], row[1], row[2], row[3], row[4], (row[5] if (len(row) > 5) else False))
         exercises.append(exercise)
-        print(exercise)
 
     return exercises

@@ -1,11 +1,12 @@
 body {
   font-family: 'Assistant', sans-serif;
+  /* Background pattern from subtlepatterns.com */
+  background: url("gplaypattern.png");
 }
 
 h1 {
   text-align: center;
   color: orange;
-
 }
 
 h2{
@@ -37,6 +38,11 @@ h4 {
   font-weight:300;
   text-align: center;
   color: #19D1A9;
+}
+
+hr {
+  margin-bottom:20px;
+  width:80%;
 }
 
 #generateWorkoutButton {
@@ -83,8 +89,13 @@ h4 {
   margin-bottom:10px;
 }
 
-.exercise{
-  text-align:center;
+.circuit hr{
+  margin-bottom:30px;
+}
+
+.exercise-details {
+  width:80%;
+  margin:auto;
 }
 
 .exercise-icon{
@@ -94,6 +105,14 @@ h4 {
 
 .exercise-icon img{
   width:100%;
+}
+
+.workout-list-buttons{
+  float:right;
+}
+
+.no-workout{
+  text-align: center;
 }
 
 .btn-primary{

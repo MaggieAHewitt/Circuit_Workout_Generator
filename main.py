@@ -5,6 +5,7 @@ from workout import *
 
 
 def main():
+
     exercises = loadExercises()
 
     number_of_circuits = raw_input("Number of Circuits: ")
@@ -20,19 +21,6 @@ def main():
 
     workout = Workout(exercises, int(number_of_circuits), int(exercises_per_circuit), focus, no_weights, no_stability_ball, no_machines)
     print(workout)
-
-
-def loadExercises():
-    exercises = []
-    file = open('ExerciseList.csv')
-    csv_file = csv.reader(file)
-
-    for row in csv_file:
-        exercise = Exercise(row[0], row[1], row[2], row[3], row[4], (row[5] if (len(row) > 5) else False))
-        exercises.append(exercise)
-
-    return exercises
-
 
 if __name__ == "__main__":
     main()

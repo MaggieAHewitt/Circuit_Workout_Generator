@@ -2,87 +2,74 @@
 {% block body %}
 <div class="container">
   <div id="workout" class="col-lg-8 col-lg-offset-2 section">
-  <div class="row section-header">
-    <h2>Workout</h2>
-  </div>
-  <div class="row section-content">
-    <div class="workout-list">
+    <div class="row section-header">
+      <h2>Workout</h2>
+    </div>
 
-      <div class="circuit row">
-        <h3>Circuit 1</h3>
-        <div class="exercises">
-          <div class="exercise col-lg-4">
-            <div class="exercise-icon">
-              <img  src="/static/svg/yoga_mat.svg"/>
-            </div>
-            <h4>Pushups</h4>
-            <p>Muscle Group: Chest</p>
-          </div>
+    <div class="row workout-list-buttons">
+      <a href="/" class="btn">Back</a>
+      {%if circuits|length > 0 %}
+      <a href="javascript:window.location.reload(true)" class="btn btn-primary"> Give me a different workout </a>
+      {% endif %}
+    </div>
 
-          <div class="exercise col-lg-4">
-            <div class="exercise-icon">
-              <img src="/static/svg/dumbbell.svg"/>
-            </div>
-            <h4>Deadlift Row</h4>
-            <p>
-              Muscle Group: Back <br/>
-              Requires: Weights
-            </p>
-          </div>
-
-          <div class="exercise col-lg-4">
-            <div class="exercise-icon">
-              <img src="/static/svg/stability_ball.svg"/>
-            </div>
-            <h4>Stability Ball Pass</h4>
-            <p>
-              Muscle Group: Core <br/>
-              Requires: Stability Ball
-            </p>
-          </div>
-        </div>
+    {%if circuits|length < 1 %}
+      <div class="row no-workout">
+        <p>
+          It seems there are no workouts that match the provided criteria. <br/>
+          Please try again.
+        </p>
       </div>
+    {% endif %}
 
-      <hr>
+    <div class="row section-content">
+      <div class="workout-list">
+        {% for circuit in circuits %}
+        <div class="circuit">
+          <h3>Circuit {{loop.index}}</h3>
 
-      <div class="circuit row">
-        <h3>Circuit 2</h3>
-        <div class="exercises">
-          <div class="exercise col-lg-4">
-            <div class="exercise-icon">
-              <img src="/static/svg/yoga_mat.svg"/>
+          <div class="exercises row">
+            {% for exercise in circuit.exercises %}
+            <div class="exercise col-lg-4">
+              <div class="exercise-icon">
+                {% if exercise.requires_weights %}
+                    <img  src="/static/svg/dumbbell.svg"/>
+                {% elif exercise.requires_machine %}
+                    <img  src="/static/svg/exercise_machine.svg"/>
+                {% elif exercise.requires_stability_ball %}
+                    <img  src="/static/svg/stability_ball.svg"/>
+                {% else %}
+                    <img  src="/static/svg/yoga_mat.svg"/>
+                {% endif %}
+
+              </div>
+              <h4>{{exercise.name}}</h4>
+              <p class="exercise-details">
+                <strong>Muscle Group:</strong> {{ exercise.group | capitalize }}
+                {% if exercise.requires_weights or exercise.requires_machine or exercise.requires_stability_ball %}
+                <br/><strong>Requires: </strong>
+                  {% if exercise.requires_weights %}
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;Weights
+                  {% endif %}
+                  {% if exercise.requires_stability_ball %}
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;Stability Ball
+                  {% endif %}
+                  {% if exercise.requires_machine %}
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;Exercise Machine
+                  {% endif %}
+                {% endif %}
+              </p>
             </div>
-            <h4>Pushups</h4>
-            <p>Muscle Group: Chest</p>
+            {% endfor %}
           </div>
-
-          <div class="exercise col-lg-4">
-            <div class="exercise-icon">
-              <img src="/static/svg/dumbbell.svg"/>
-            </div>
-            <h4>Bicep Curl </h4>
-            <p>
-              Muscle Group: Biceps <br/>
-              Requires: Weights
-            </p>
-          </div>
-
-          <div class="exercise col-lg-4">
-            <div class="exercise-icon">
-              <img src="/static/svg/exercise_machine.svg"/>
-            </div>
-            <h4>Hamstring Curls</h4>
-            <p>
-              Muscle Group: Core <br/>
-              Requires: Stability Ball
-            </p>
-          </div>
+        </div> <!-- circuit -->
+        <div class="row">
+          <hr>
         </div>
-      </div>
+        {% endfor %}
+      </div><!-- Workout-list-->
 
-      <hr>
-
-  </div>
-</div><!-- section-content -->
-</div> <!-- Container -->
+    </div><!-- section-content -->
+  </div> <!-- section -->
+</div> <!-- container>
 {% endblock %}
