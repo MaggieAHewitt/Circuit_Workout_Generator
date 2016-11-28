@@ -1,8 +1,27 @@
+html{
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   font-family: 'Assistant', sans-serif;
   /* Background pattern from subtlepatterns.com */
   background: url("gplaypattern.png");
+  margin-bottom:60px;
 }
+
+.footer {
+  font-size: 10px;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #fbfbfb;
+}
+
+
 
 h1 {
   text-align: center;
@@ -153,9 +172,4 @@ hr {
 .back-button{
   margin: 0;
   text-align: center;
-}
-
-.footer{
-  font-size:10px;
-  text-align:center;
 }
