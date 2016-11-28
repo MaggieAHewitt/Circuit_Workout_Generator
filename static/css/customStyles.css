@@ -49,6 +49,14 @@ hr {
   float:right;
 }
 
+.left {
+  float:left;
+}
+
+.right {
+  float:right;
+}
+
 .header {
   width:100%;
   background: #fbfbfb;
@@ -66,7 +74,12 @@ hr {
 
 .section {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.section-content{
   margin-bottom:20px;
+  padding:20px;
+  background-color:#ffffff;
 }
 
 .section-header {
@@ -74,11 +87,6 @@ hr {
   color: white;
   background-color:#19D1A9;
   border-bottom:1px dashed #ffffff;
-}
-
-.section-content {
-  padding:20px;
-  background-color:#ffffff;
 }
 
 .form-group {
@@ -93,8 +101,17 @@ hr {
   margin-bottom:30px;
 }
 
+.exercise-row {
+  margin-bottom:25px;
+}
+
 .exercise-details {
   width:80%;
+  margin:auto;
+}
+
+.exercise-details p {
+  max-width:200px;
   margin:auto;
 }
 
@@ -107,15 +124,33 @@ hr {
   width:100%;
 }
 
-.workout-list-buttons{
-  float:right;
+.button-row{
+  width:100%;
+  margin-top:10px;
+}
+.workout-list-buttons .btn{
+  margin:5px;
 }
 
 .no-workout{
   text-align: center;
 }
 
+.btn{
+  background-color: #8BEFD9;
+}
+
+.btn:hover{
+  background-color: #12a386;
+  border:1px solid #19D1A9;
+}
+
 .btn-primary{
   background-color:#19D1A9;
   border:1px solid #8BEFD9;
+}
+
+.back-button{
+  margin: 0;
+  text-align: center;
 }

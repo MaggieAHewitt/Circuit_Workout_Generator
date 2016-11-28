@@ -6,70 +6,83 @@
       <h2>Workout</h2>
     </div>
 
-    <div class="row workout-list-buttons">
-      <a href="/" class="btn">Back</a>
-      {%if circuits|length > 0 %}
-      <a href="javascript:window.location.reload(true)" class="btn btn-primary"> Give me a different workout </a>
-      {% endif %}
-    </div>
+    <div class="section-content">
 
-    {%if circuits|length < 1 %}
-      <div class="row no-workout">
-        <p>
-          It seems there are no workouts that match the provided criteria. <br/>
-          Please try again.
-        </p>
+      <div class="row button-row">
+        {%if circuits|length > 0 %}
+        <a href="javascript:window.location.reload(true)" data-toggle="tooltip" title="Not feeling your workout? Generate totally different using the same settings." class="btn btn-primary right"> Generate a different workout </a>
+        {% endif %}
       </div>
-    {% endif %}
 
-    <div class="row section-content">
-      <div class="workout-list">
-        {% for circuit in circuits %}
-        <div class="circuit">
-          <h3>Circuit {{loop.index}}</h3>
-
-          <div class="exercises row">
-            {% for exercise in circuit.exercises %}
-            <div class="exercise col-lg-4">
-              <div class="exercise-icon">
-                {% if exercise.requires_weights %}
-                    <img  src="/static/svg/dumbbell.svg"/>
-                {% elif exercise.requires_machine %}
-                    <img  src="/static/svg/exercise_machine.svg"/>
-                {% elif exercise.requires_stability_ball %}
-                    <img  src="/static/svg/stability_ball.svg"/>
-                {% else %}
-                    <img  src="/static/svg/yoga_mat.svg"/>
-                {% endif %}
-
-              </div>
-              <h4>{{exercise.name}}</h4>
-              <p class="exercise-details">
-                <strong>Muscle Group:</strong> {{ exercise.group | capitalize }}
-                {% if exercise.requires_weights or exercise.requires_machine or exercise.requires_stability_ball %}
-                <br/><strong>Requires: </strong>
-                  {% if exercise.requires_weights %}
-                    <br>&nbsp;&nbsp;&nbsp;&nbsp;Weights
-                  {% endif %}
-                  {% if exercise.requires_stability_ball %}
-                    <br>&nbsp;&nbsp;&nbsp;&nbsp;Stability Ball
-                  {% endif %}
-                  {% if exercise.requires_machine %}
-                    <br>&nbsp;&nbsp;&nbsp;&nbsp;Exercise Machine
-                  {% endif %}
-                {% endif %}
-              </p>
-            </div>
-            {% endfor %}
-          </div>
-        </div> <!-- circuit -->
-        <div class="row">
-          <hr>
+      {%if circuits|length < 1 %}
+        <div class="row no-workout">
+          <p>
+            It seems there are no workouts that match the provided criteria. <br/>
+            Please try again.
+          </p>
         </div>
-        {% endfor %}
-      </div><!-- Workout-list-->
+      {% endif %}
 
-    </div><!-- section-content -->
+      <div class="row">
+        <div class="workout-list">
+          {% for circuit in circuits %}
+          <div class="circuit">
+            <h3>Circuit {{loop.index}}</h3>
+
+            <div class="exercises row">
+              {% for exercise in circuit.exercises %}
+
+              {% if ((loop.index-1) % 3 == 0)%}
+                <div class="row exercise-row">
+              {% endif %}
+                <div class="exercise col-lg-4">
+                  <div class="exercise-icon">
+                    {% if exercise.requires_weights %}
+                        <img  src="/static/svg/dumbbell.svg"/>
+                    {% elif exercise.requires_machine %}
+                        <img  src="/static/svg/exercise_machine.svg"/>
+                    {% elif exercise.requires_stability_ball %}
+                        <img  src="/static/svg/stability_ball.svg"/>
+                    {% else %}
+                        <img  src="/static/svg/yoga_mat.svg"/>
+                    {% endif %}
+                  </div>
+                  <h4>{{exercise.name}}</h4>
+                  <div class="exercise-details">
+                    <p class="">
+                      <strong>Muscle Group:</strong> {{ exercise.group | capitalize }}
+                      {% if exercise.requires_weights or exercise.requires_machine or exercise.requires_stability_ball %}
+                      <br/><strong>Requires: </strong>
+                        {% if exercise.requires_weights %}
+                          <br>&nbsp;&nbsp;&nbsp;&nbsp;Weights
+                        {% endif %}
+                        {% if exercise.requires_stability_ball %}
+                          <br>&nbsp;&nbsp;&nbsp;&nbsp;Stability Ball
+                        {% endif %}
+                        {% if exercise.requires_machine %}
+                          <br>&nbsp;&nbsp;&nbsp;&nbsp;Exercise Machine
+                        {% endif %}
+                      {% endif %}
+                    </p>
+                </div>
+                </div>
+                {% if ((loop.index) % 3 == 0)%}
+                </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div> <!-- circuit -->
+          <div class="row">
+            <hr>
+          </div>
+          {% endfor %}
+        </div><!-- Workout-list-->
+      </div><!-- section-content -->
+
+      <div class="row button-row back-button">
+        <a href="/" class="btn">Back</a>
+      </div>
+    </div>
   </div> <!-- section -->
 </div> <!-- container>
 {% endblock %}
