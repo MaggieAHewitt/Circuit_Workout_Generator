@@ -6,13 +6,18 @@
       <h2>Workout</h2>
     </div>
 
-    <div class="section-content">
+    <div class="row section-content">
 
-      <div class="row button-row">
-        {%if circuits|length > 0 %}
-        <a href="javascript:window.location.reload(true)" data-toggle="tooltip" title="Not feeling your workout? Generate totally different using the same settings." class="btn btn-primary right"> Generate a different workout </a>
-        {% endif %}
-      </div>
+          {%if circuits|length > 0 %}
+          <div class="col-md-4 col-md-offset-8 text-center button-row">
+          <form action="/refresh" method="POST">
+              <button id="refresh-button" data-toggle="tooltip" type="submit" title="Not feeling your workout? Generate totally different using the same settings." class="btn btn-primary btn-block">
+                  Generate a different workout
+              </button>
+          </form>
+          </div>
+          {% endif %}
+
 
       {%if circuits|length < 1 %}
         <div class="row no-workout">
@@ -82,6 +87,7 @@
       <div class="row button-row back-button">
         <a href="/" class="btn">Back</a>
       </div>
+
     </div>
   </div> <!-- section -->
 </div> <!-- container>

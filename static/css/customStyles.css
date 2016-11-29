@@ -68,6 +68,10 @@ hr {
   float:right;
 }
 
+#refresh-button {
+  min-width:50px;
+}
+
 .left {
   float:left;
 }
